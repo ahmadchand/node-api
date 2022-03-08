@@ -1,10 +1,9 @@
 const config = require("config");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const Joi = require("joi");
 const logger = require("./middleware/logger");
 const home = require("./routes/home");
-const courses = require("./routes/courses");
+const genres = require("./routes/genres");
 const express = require("express");
 const debug = require("debug")("app:startup");
 const app = express();
@@ -17,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(helmet());
 app.use("/", home);
-app.use("/api/courses", courses);
+app.use("/movies/genres", genres);
 
 // Configuration
 console.log("Application Name: " + config.get("name"));
