@@ -6,52 +6,42 @@ const genres = [
   {
     id: 1,
     genre: "Comedy",
-    star: 4.5,
   },
   {
     id: 2,
     genre: "Action",
-    star: 5,
   },
   {
     id: 3,
     genre: "Animation",
-    star: 4.9,
   },
   {
     id: 4,
     genre: "Drama",
-    star: 4.4,
   },
   {
     id: 5,
     genre: "Crime",
-    star: 4.7,
   },
   {
     id: 6,
     genre: "Musical",
-    star: 4.6,
   },
   {
     id: 7,
     genre: "Horror",
-    star: 4.2,
   },
   {
     id: 8,
     genre: "Adventure",
-    star: 4.1,
   },
   {
     id: 9,
     genre: "Fantasy",
-    star: 4.6,
   },
   {
     id: 10,
     genre: "Thriller",
-    star: 4,
   },
 ];
 
@@ -74,7 +64,6 @@ router.post("/", (req, res) => {
   const data = {
     id: genres.length + 1,
     genre: req.body.genre,
-    star: req.body.star,
   };
 
   genres.push(data);
@@ -90,7 +79,6 @@ router.put("/:id", (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   genre.genre = req.body.genre;
-  genre.star = req.body.star;
   res.send(genre);
 });
 
@@ -108,7 +96,6 @@ router.delete("/:id", (req, res) => {
 const validateGenre = (genre) => {
   const schema = Joi.object({
     genre: Joi.string().min(3).required(),
-    star: Joi.number().required(),
   });
 
   return schema.validate(genre);

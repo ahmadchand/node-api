@@ -19,20 +19,23 @@ app.use("/", home);
 app.use("/movies/genres", genres);
 
 // Configuration
-console.log("Application Name: " + config.get("name"));
-console.log("Mail Server: " + config.get("mail.host"));
-console.log("Mail Password: " + config.get("mail.password"));
+// console.log("Application Name: " + config.get("name"));
+// console.log("Mail Server: " + config.get("mail.host"));
+// console.log("Mail Password: " + config.get("mail.password"));
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
   debug("Morgan enabled...");
 }
 
-app.use(logger);
+// app.use(logger);
 
 app.get("/", (req, res) => {
   res.render("index", { title: "My Express App", message: "Hey Ninjas" });
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, console.log(`Listingn at port ${port}`));
+app.listen(
+  port
+  //  console.log(`Listening at port ${port}`)
+);
