@@ -8,7 +8,13 @@ const rentals = require("./routes/rentals");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const express = require("express");
+const config = require("config");
 const app = express();
+
+if (!config.get("jwtPrivateKey")) {
+  console.error("FATAL ERROR: jwtPrivateKey is not defined.");
+  process.exit(1);
+}
 
 mongoose
   .connect("mongodb://localhost/vidly")
