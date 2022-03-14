@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
+const config = require("config");
 const logger = require("./logging")();
 
 module.exports = function () {
-  const MONGO_URI = "mongodb://localhost/vidly";
+  const db = config.get("db");
   mongoose
-    .connect(MONGO_URI, {
+    .connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     })
-    .then(() => logger.info("Connected to VidlyDB..."));
+    .then(() => logger.info(`Connected to ${db}...`));
 };
