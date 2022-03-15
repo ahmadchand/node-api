@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest --watchAll --verbose"
   },
   "jest": {
     "testURL": "http://localhost",
     "testEnvironment": "node"
   },
+  "engines": {
+    "node": "16.13.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "config": "^3.3.7",
     "debug": "^4.3.3",
     "express": "^4.17.3",
@@ -26,6 +31,7 @@
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.4",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.14",
     "morgan": "^1.10.0",
     "pug": "^3.0.2",

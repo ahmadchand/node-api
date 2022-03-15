@@ -8,8 +8,11 @@ describe("auth middleware", () => {
   });
 
   afterEach(async () => {
-    server.close();
+    await Genre.remove({});
+    await server.close();
   });
+
+  let token;
 
   const exec = () => {
     return request(server)
@@ -25,16 +28,22 @@ describe("auth middleware", () => {
   it("should return 401 if no token is provided", async () => {
     token = "";
 
-    const result = await exec();
+    const res = await exec();
 
-    expect(result.status).toBe(401);
+    expect(res.status).toBe(401);
   });
 
-  //   it("should return 400 if token is invalid", async () => {
-  //     token = "a";
+  it("should return 400 if token is invalid", async () => {
+    token = "a";
 
-  //     const result = await exec();
+    const res = await exec();
 
-  //     expect(result.status).toBe(400);
-  //   });
+    expect(res.status).toBe(400);
+  });
+
+  it("should return 200 if token is valid", async () => {
+    const res = await exec();
+
+    expect(res.status).toBe(200);
+  });
 });
